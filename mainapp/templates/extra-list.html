@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="listPage">
+  <div class="row">
+    <div class="col-lg-8 col-md-12">
+      <h2 class="mb-3">Extras List</h2>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      <button type="button" class="btn btn-info add-btn" data-toggle="modal" data-target="#newPostModal">New Extra</button>
+    </div>
+  </div>
+
+  {% for extra in extras %}
+    {% if forloop.first %}<div class="row">{% endif %}
+      <div class="card mx-auto mt-3 mb-3" style="width: 19rem;">
+        <div class="card-body">
+          <h5 class="card-title">{% if extra.name %}{{ extra.name }}{% else %}Unknown{% endif %}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ extra.city }}</h6>
+          <p class="card-text">{{ extra.message }}</p>
+          <footer class="blockquote-footer">Posted on {{ extra.date_created|date:"D d M Y" }} {{ extra.date_created|time:"H:i" }}</footer>
+          <a href="{% url 'post_detail' extra.id %}" class="card-link">Discuss</a>
+        </div>
+      </div>
+    {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+  {% empty %}
+  <div class="row mt-4 ml-5">
+    <div class="alert alert-info" role="alert">
+      There are no extra to give at the moment.
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newPostModal" tabindex="-1" role="dialog" aria-labelledby="newPostModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Extra</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'extras' %}" method="post">
+      {% csrf_token %}
+        <div class="modal-body">
+          {% for field in form %}
+            <div class="fieldWrapper">
+              {{ field.errors }}
+              {{ field.label_tag }} {{ field }}
+              <br />
+            </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create Extra</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

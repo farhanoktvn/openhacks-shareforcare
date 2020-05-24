@@ -8,7 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'mainapp/css/mainapp.css' %}"
+    <link rel="stylesheet" href="{% static 'mainapp/css/mainapp.css' %}" />
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/gif" sizes="16x16">
 
     <title>Share for Care</title>
   </head>
@@ -22,14 +23,23 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger mx-3 active" href="#">Needs</a>
+            <a class="nav-link js-scroll-trigger mx-3 active" href="{% url 'needs' %}">Requests</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger mx-3 active" href="#">Extras</a>
+            <a class="nav-link js-scroll-trigger mx-3 active" href="{% url 'extras' %}">Extras</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger mx-3 active" href="{% url 'about' %}">About</a>
           </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger mx-3 active" href="{% url 'accountSignout' %}">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger mx-3 active" href="{% url 'accountLogin' %}">Login</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
       </div>

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="detailPage">
+  <div class="row mx-auto">
+    <div class="card thread-card">
+      <div class="card-body">
+        <h5 class="card-title">{% if post.name %}{{ post.name }}{% else %}Unknown{% endif %}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ post.city }}</h6>
+        <p class="card-text">{{ post.message }}</p>
+        <footer class="blockquote-footer">Posted on {{ post.date_created|date:"D d M Y" }} {{ post.date_created|time:"H:i" }}</footer>
+        <br />
+        <button type="button" class="btn btn-info add-btn" data-toggle="modal" data-target="#newReplyModal">Reply to this post</button>
+      </div>
+    </div>
+  </div>
+  <br />
+  {% for reply in replies %}
+  <div class="row mx-auto">
+    <div class="card ml-5 thread-card">
+      <div class="card-body">
+        <h5 class="card-title">Reply by {% if reply.name %}{{ reply.name }}{% else %}Unknown{% endif %}</h5>
+        <p class="card-text">{{ reply.message }}</p>
+        <footer class="blockquote-footer">Posted on {{ reply.date_created|date:"D d M Y" }} {{ reply.date_created|time:"H:i" }}</footer>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  {% empty %}
+  <div class="row mt-4 ml-5">
+    <div class="alert alert-info" role="alert">
+      There are no reply yet.
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newReplyModal" tabindex="-1" role="dialog" aria-labelledby="newReplyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Reply</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'post_detail' post.id %}" method="post">
+      {% csrf_token %}
+        <div class="modal-body">
+          {% for field in form %}
+            <div class="fieldWrapper">
+              {{ field.errors }}
+              {{ field.label_tag }} {{ field }}
+              <br />
+            </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Reply</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
