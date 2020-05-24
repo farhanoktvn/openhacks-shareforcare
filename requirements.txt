@@ -1,0 +1,9 @@
+django
+dj-database-url
+gunicorn
+psycopg2-binary
+SQLAlchemy
+whitenoise
+django-widget-tweaks
+django-heroku
+django-location-field
