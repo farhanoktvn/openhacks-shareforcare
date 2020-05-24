@@ -1,0 +1,103 @@
+#mainNav {
+  background-color: #FFAE63;
+}
+
+#mainNav .navbar-brand {
+  color: white;
+}
+
+#mainContainer {
+  margin-top: 10vh;
+}
+
+.navbar-brand:hover {
+  background-color: #FF8819;
+  cursor: pointer;
+  border-radius: 6%;
+}
+
+.nav-item:hover {
+  background-color: #FF8819;
+  cursor: pointer;
+  border-radius: 6%;
+}
+
+.nav-item a:hover {
+  cursor: pointer;
+}
+
+/*
+      Index Page
+*/
+
+#frontPage {
+  height: 80vh;
+}
+
+/* .front-row div {
+  border: 0.3px solid black;
+} */
+
+.info-text-top {
+  margin-top: 10vh;
+}
+
+.info-text-bottom {
+  margin-top: 8vh;
+}
+
+#suburbanImg {
+  max-height: 35vh;
+  max-width: 80vw;
+  width: auto;
+}
+
+#charityImg {
+  max-height: 35vh;
+  max-width: 70vw;
+  width: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  #mainContainer {
+    margin-top: 15vh;
+  }
+
+  .info-text-top {
+    margin-top: 3vh;
+    font-size: 20px;
+  }
+
+  .info-text-bottom {
+    margin-top: 3vh;
+    font-size: 20px;
+  }
+
+  #charityImg {
+    display: none;
+  }
+}
+
+/*
+      About Page
+*/
+
+#aboutPage {
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+
+.about-title {
+  margin-top: 15vh;
+}
+
+.about-text {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .about-text {
+    font-size: 1.3rem;
+  }
+}

@@ -2,5 +2,35 @@
 {% load static %}
 
 {% block content %}
-<h1>Hello, World!</h1>
+
+<div id="frontPage">
+  <div class="row front-row mx-auto">
+    <div class="col-lg-6 col-md-12 text-right">
+      <h3 class="info-text-top text-center">
+        COVID-19 has taken its toll, millions of people are struggling to live their life with a short amount of basic necessities.
+      </h3>
+    </div>
+    <div class="col-lg-6 col-md-12 text-center">
+      <img src="{% static 'mainapp/images/suburb.png' %}" class="mx-auto" id="suburbanImg" alt="suburban">
+    </div>
+  </div>
+
+  <div class="row front-row">
+    <div class="col-lg-6 col-md-12 text-center">
+      <img src="{% static 'mainapp/images/charity.png' %}" class="mx-auto" id="charityImg" alt="charity">
+    </div>
+    <div class="col-lg-6 col-md-12 text-center">
+      <h3 class="info-text-bottom">
+        Now is the time to strengthen our community by supporting each others.
+      </h3>
+      <div class="row mt-4">
+        <button type="button" class="btn btn-danger mx-auto">I need something</button>
+      </div>
+      <div class="row mt-4">
+        <button type="button" class="btn btn-primary mx-auto">I want to help</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}
